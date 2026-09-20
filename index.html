@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Untuk Kamu ❤️</title>
+
+  <style>
+    /* ================================
+       RESET & DASAR
+    ================================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(135deg, #fff5f8, #ffe4ec);
+      color: #5a2635;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ================================
+       BACKGROUND HATI JATUH
+    ================================= */
+    #hearts-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .heart {
+      position: absolute;
+      top: -50px;
+      color: #ff8fab;
+      font-size: 20px;
+      animation: falling linear forwards;
+      opacity: 0.75;
+    }
+
+    @keyframes falling {
+      0% {
+        transform: translateY(-50px) rotate(0deg);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.8;
+      }
+
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* ================================
+       KONTEN UTAMA
+    ================================= */
+    main {
+      position: relative;
+      z-index: 1;
+    }
+
+    section {
+      min-height: 100vh;
+      padding: 70px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+      text-align: center;
+    }
+
+    /* ================================
+       HERO
+    ================================= */
+    .hero {
+      min-height: 100vh;
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: 30px;
+      padding: 45px 25px;
+      box-shadow: 0 20px 50px rgba(180, 70, 100, 0.15);
+      animation: fadeIn 2s ease;
+    }
+
+    .heart-icon {
+      font-size: 65px;
+      animation: heartbeat 1.5s infinite;
+      margin-bottom: 20px;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.15);
+      }
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 8vw, 4rem);
+      color: #c7395f;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #75404e;
+    }
+
+    .fade-text {
+      animation: fadeIn 3s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ================================
+       BUTTON
+    ================================= */
+    .btn {
+      border: none;
+      margin-top: 30px;
+      padding: 15px 25px;
+      border-radius: 50px;
+      background: linear-gradient(135deg, #e75480, #c7395f);
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(199, 57, 95, 0.25);
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 15px 30px rgba(199, 57, 95, 0.35);
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    /* ================================
+       SURAT CINTA
+    ================================= */
+    #letter {
+      display: none;
+      margin-top: 30px;
+      padding: 30px;
+      background: #fffafa;
+      border-radius: 20px;
+      text-align: left;
+      line-height: 1.9;
+      box-shadow: inset 0 0 20px rgba(200, 80, 110, 0.08);
+      animation: letterOpen 0.8s ease;
+    }
+
+    #letter.show {
+      display: block;
+    }
+
+    @keyframes letterOpen {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    #letter h2 {
+      text-align: center;
+      color: #c7395f;
+      margin-bottom: 20px;
+    }
+
+    #letter p {
+      margin-bottom: 15px;
+    }
+
+    .signature {
+      text-align: right;
+      font-weight: bold;
+      color: #c7395f;
+      margin-top: 25px;
+    }
+
+    /* ================================
+       GALERI
+    ================================= */
+    .gallery-section {
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    .section-title {
+      font-size: 2rem;
+      color: #c7395f;
+      margin-bottom: 30px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .photo-card {
+      overflow: hidden;
+      border-radius: 20px;
+      background: white;
+      box-shadow: 0 10px 25px rgba(150, 50, 80, 0.12);
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 260px;
+      display: block;
+      object-fit: cover;
+      transition: 0.4s;
+    }
+
+    .photo-card:hover img {
+      transform: scale(1.08);
+    }
+
+    /* ================================
+       MUSIK
+    ================================= */
+    .music-box {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 30px 20px;
+      border-radius: 25px;
+      box-shadow: 0 15px 35px rgba(180, 70, 100, 0.12);
+    }
+
+    .music-icon {
+      font-size: 50px;
+      margin-bottom: 15px;
+    }
+
+    #musicStatus {
+      margin-top: 15px;
+      font-size: 0.9rem;
+      color: #8a5362;
+    }
+
+    /* ================================
+       FOOTER
+    ================================= */
+    footer {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 30px 15px;
+      background: #c7395f;
+      color: white;
+    }
+
+    /* ================================
+       RESPONSIVE HP
+    ================================= */
+    @media (max-width: 700px) {
+      section {
+        padding: 50px 15px;
+      }
+
+      .hero-card {
+        padding: 35px 20px;
+      }
+
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .photo-card img {
+        height: 300px;
+      }
+
+      #letter {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =================================
+       HATI JATUH
+  ================================== -->
+  <div id="hearts-container"></div>
+
+
+  <main>
+
+    <!-- =================================
+         HALAMAN PEMBUKA
+    ================================== -->
+    <section class="hero">
+
+      <div class="container">
+
+        <div class="hero-card">
+
+          <div class="heart-icon">❤️</div>
+
+          <!-- GANTI TEKS UCAPAN DI SINI -->
+          <h1 class="fade-text">
+            Untuk Kamu, miraaaa❤️
+          </h1>
+
+          <!-- GANTI TEKS PEMBUKA DI SINI -->
+          <p class="fade-text">
+            haii sayangkuuu miraaaaa.
+            mauu bacaaaaa suratts rahasiaaa gaakkk
+          </p>
+
+          <button class="btn" onclick="openLetter()">
+            💌 Klik di sini untuk pesan rahasia
+          </button>
+
+
+          <!-- =================================
+               SURAT CINTA
+               GANTI ISI SURAT DI SINI
+          ================================== -->
+          <div id="letter">
+
+            <h2>💌 Surat Kecil Untukmu</h2>
+
+            <p>
+              haiii miraaaa...
+            </p>
+
+            <p>
+              bayu sebenarnya tidak tahu harus mulai dari mana.
+              Ada begitu banyak hal yang ingin aku ceritakan,
+              tetapi terkadang kata-kata terasa terlalu kecil
+              untuk menggambarkan apa yang ada di dalam hati.
+            </p>
+
+            <p>
+              Terima kasih karena sudah hadir dalam hidupku.
+              Terima kasih untuk setiap senyuman, perhatian,
+              cerita, dan waktu yang pernah kita lewati bersama.
+              terima kasihh sudahh mau menerima segala kekurangann bayuu
+              Hal-hal sederhana bersama miraa sering kali menjadi
+              sesuatu yang sangat berarti untuk bayuuu
+            </p>
+
+            <p>
+              aku tidak menjanjikan bahwa semuanya akan selalu
+              sempurna. Mungkin akan ada hari ketika kita berbeda
+              pendapat, ada hari ketika kita sama-sama lelah,
+              dan ada hari ketika semuanya terasa sulit.
+            </p>
+
+            <p>
+              Tapi aku ingin kita selalu bisa saling mengerti,
+              saling menghargai, dan saling menguatkan.
+              Karena menurutku, hubungan yang indah bukan tentang
+              selalu bahagia setiap saat, tetapi tentang tetap
+              memilih untuk saling menjaga ketika keadaan tidak
+              mudah.
+            </p>
+
+            <p>
+              maaaff yaaa akuuu selaluuu buattt kamuu kecewaaaa
+              maaafff benarrr selaluu buattt mu marahhh
+              maaaafff maaff belumm bisa menjadi yang terbaik soalnyaa masii ischool
+            </p>
+
+            <p>
+              Dan kalau suatu hari kamu bertanya seberapa
+              berartinya kamu bagiku, mungkin aku tidak akan
+              menemukan jawaban yang benar-benar cukup.
+              Yang aku tahu, kehadiranmu telah membuat banyak
+              hal sederhana terasa jauh lebih istimewa.
+            </p>
+
+            <p>
+              Semoga kita bisa terus membuat banyak kenangan
+              baik, tertawa bersama, saling mendukung,
+              dan menikmati perjalanan kita satu langkah
+              demi satu langkah.
+            </p>
+
+            <p>
+              Terima kasih sudah menjadi bagian dari ceritaa bayuu yaa miraaa.
+              ❤️
+            </p>
+
+            <!-- GANTI NAMA DI SINI -->
+            <div class="signature">
+              dariii bayuuu untukk,<br>
+              miraaaa❤️
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =================================
+         GALERI FOTO
+    ================================== -->
+    <section class="gallery-section">
+
+      <div class="container">
+
+        <h2 class="section-title">
+          📸 Kenangan Kita
+        </h2>
+
+        <div class="gallery">
+
+          <!--
+            GANTI LINK FOTO DI BAGIAN src=""
+            dengan link foto milikmu.
+          -->
+
+          <div class="photo-card">
+            <img
+              src="https://drive.google.com/file/d/14N01tuqxhVCsXtwYHVCvUS1OgEy3WuZ1/view?usp=drivesdk"
+              alt="Foto kenangan 1"
+            >
+          </div>
+
+          <div class="photo-card">
+            <img
+              src="https://drive.google.com/file/d/10wLfKlCO9hBDQ8bzAiee3sd_PQWscXh3/view?usp=drivesdk"
+              alt="Foto kenangan 2"
+            >
+          </div>
+
+          <div class="photo-card">
+            <img
+              src"https://drive.google.com/file/d/1FKUq1Jr-SKG75XiasCt-Z3E11q2cIGt_/view?usp=drivesdk"
+              alt="Foto kenangan 3"
+            >
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =================================
+         MUSIK
+    ================================== -->
+    <section>
+
+      <div class="container">
+
+        <div class="music-box">
+
+          <div class="music-icon">🎵</div>
+
+          <h2 class="section-title">
+            Musik Untuk Kita
+          </h2>
+
+          <p>
+            Putar musik ini sambil membaca pesan dariku ❤️
+          </p>
+
+          <!--
+            GANTI LINK AUDIO DI src=""
+            dengan link/file musik milikmu.
+            
+            Contoh jika file musik ada di folder yang sama:
+            src="musik.mp3"
+          -->
+
+          <audio id="myMusic" loop>
+            <source
+              src="https://example.com/7662107916178148112.mp3"
+              type="audio/mpeg"
+            >
+            Browser kamu tidak mendukung audio.
+          </audio>
+
+          <button class="btn" onclick="toggleMusic()">
+            🎵 Play / Pause
+          </button>
+
+          <p id="musicStatus">
+            Musik belum diputar
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =================================
+       FOOTER
+  ================================== -->
+  <footer>
+
+    <!-- GANTI TEKS FOOTER DI SINI -->
+    dibuat dengan ❤️ khusus untuk miraaaa
+
+  </footer>
+
+
+  <script>
+
+    /* =================================
+       SURAT CINTA
+    ================================== */
+
+    function openLetter() {
+
+      const letter = document.getElementById("letter");
+
+      letter.classList.toggle("show");
+
+      if (letter.classList.contains("show")) {
+
+        letter.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
+      }
+
+    }
+
+
+    /* =================================
+       MUSIK PLAY / PAUSE
+    ================================== */
+
+    const music = document.getElementById("myMusic");
+    const musicStatus = document.getElementById("musicStatus");
+
+    function toggleMusic() {
+
+      if (music.paused) {
+
+        music.play()
+          .then(() => {
+            musicStatus.textContent = "🎶 Musik sedang diputar...";
+          })
+          .catch(() => {
+            musicStatus.textContent =
+              "⚠️ Ganti link musik terlebih dahulu.";
+          });
+
+      } else {
+
+        music.pause();
+
+        musicStatus.textContent =
+          "⏸️ Musik dijeda.";
+
+      }
+
+    }
+
+
+    /* =================================
+       EFEK HATI BERJATUHAN
+    ================================== */
+
+    const heartsContainer =
+      document.getElementById("hearts-container");
+
+    function createHeart() {
+
+      const heart = document.createElement("div");
+
+      heart.classList.add("heart");
+
+      // Bentuk hati yang akan jatuh
+      const hearts = ["❤️", "💗", "💕", "💖", "💘"];
+
+      heart.innerHTML =
+        hearts[Math.floor(Math.random() * hearts.length)];
+
+      // Posisi horizontal acak
+      heart.style.left =
+        Math.random() * 100 + "vw";
+
+      // Ukuran acak
+      heart.style.fontSize =
+        (12 + Math.random() * 25) + "px";
+
+      // Durasi jatuh acak
+      heart.style.animationDuration =
+        (4 + Math.random() * 6) + "s";
+
+      heartsContainer.appendChild(heart);
+
+      // Hapus setelah animasi selesai
+      setTimeout(() => {
+        heart.remove();
+      }, 10000);
+
+    }
+
+
+    // Membuat hati setiap 400 milidetik
+    setInterval(createHeart, 400);
+
+
+    /* =================================
+       CATATAN:
+       
+       Browser HP biasanya memblokir
+       autoplay musik sampai pengguna
+       melakukan interaksi.
+
+       Karena itu musik diputar lewat
+       tombol Play/Pause.
+    ================================== */
+
+  </script>
+
+</body>
+</html>
